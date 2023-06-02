@@ -8,15 +8,38 @@ h1 {
 
 li {
   list-style: none;
-  font-size: 15px;
+  font-size: 20px;
+  line-height: 19px;
+}
+li:first-letter {
+  text-transform: capitalize;
+}
+button {
+  position: relative;
+  top: -30px;
+  left: 350px;
 }
 .all-weather-app {
   max-width: 650px;
   margin: 35px auto;
-  padding: 20px auto;
+}
+.weather-app {
+  padding: 20px;
   border: 2px solid #dadde1;
   border-radius: 10px;
 }
-.source {
-  text-align: right;
+.location-Form {
+  padding: 20px;
+}
+.row {
+  padding-top: 30px;
+}
+.weather-info {
+  position: relative;
+  font-size: 20px;
+  top: 90px;
+}
+
+.units {
+  line-height: 1px;
 }

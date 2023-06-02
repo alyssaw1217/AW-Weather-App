@@ -18,42 +18,45 @@
   <body>
     <div class="container">
       <div class="all-weather-app">
-        <form id="location-Form">
-          <input
-            type="location"
-            id="location-input"
-            placeholder="Search City"
-            required
-          />
-          <input type="submit" value="Search" />
-        </form>
-
-        <div class="row">
-          <div class="col-6">
-            <ul>
-              <li>Clear</li>
-              <li>Wind Speed:</li>
-            </ul>
-          </div>
-          <div class="col-6">
-            <h1><strong>Brecknock Township, PA</strong></h1>
-            <ul>
-              <li>Friday June 2 9:07</li>
-              <li><img src="http://openweathermap.org/img/wn/01d@2x.png" /></li>
-              <strong id="temperature"></strong>
-              <span class="units"> °C</span>
-            </ul>
+        <div class="weather-app">
+          <form id="location-Form">
+            <input
+              type="location"
+              id="location-input"
+              placeholder="Search City"
+              autocomplete="off"
+            />
+            <input type="submit" value="Search" />
+          </form>
+          <button id="currentCity">Current Location</button>
+          <div class="row">
+            <div class="col-6">
+              <h1><strong>Brecknock Township, PA</strong></h1>
+              <ul>
+                <li class="dateTime">Friday, June 2 9:07</li>
+                <span class="time">9:07</span>
+                <img src="http://openweathermap.org/img/wn/01d@2x.png" />
+                <strong id="temperature"></strong>
+                <span class="units"> °C</span>
+              </ul>
+            </div>
+            <div class="col-6">
+              <ul class="weather-info">
+                <li>Clear</li>
+                <li>Wind Speed: <span id="wind"></span> km/h</li>
+              </ul>
+            </div>
           </div>
         </div>
+        <small id="source">
+          <a
+            href="https://github.com/alyssaw1217/AW-Weather-App.git"
+            target="_blank"
+            >Open-source code</a
+          >
+          by Alyssa Washington
+        </small>
       </div>
-      <small id="source">
-        <a
-          href="https://github.com/alyssaw1217/AW-Weather-App.git"
-          target="_blank"
-          >Open-source code</a
-        >
-        by Alyssa Washington
-      </small>
     </div>
   </body>
   <script src="src/app.js"></script>
