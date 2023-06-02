@@ -37,7 +37,8 @@ button {
 .weather-info {
   position: relative;
   font-size: 20px;
-  top: 90px;
+  top: 50px;
+  bottom: 40px;
 }
 
 .units {

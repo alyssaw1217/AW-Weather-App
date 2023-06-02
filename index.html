@@ -13,6 +13,7 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/styled.css" />
   </head>
   <body>
@@ -34,10 +35,12 @@
               <h1><strong>Brecknock Township, PA</strong></h1>
               <ul>
                 <li id="dateTime">Friday, June 2 9:07</li>
-                <img src="http://openweathermap.org/img/wn/01d@2x.png" />
+              </ul>
+              <div class="d-flex weather-icon">
+                <img src="" alt="Clear" id="icon" />
                 <strong id="temperature"></strong>
                 <span class="units"> °C</span>
-              </ul>
+              </div>
             </div>
             <div class="col-6">
               <ul class="weather-info">
