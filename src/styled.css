@@ -3,14 +3,20 @@ body {
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 25px;
 }
 
 li {
   list-style: none;
-  font-size: 25px;
+  font-size: 15px;
 }
 .all-weather-app {
-  max-width: 400px;
+  max-width: 650px;
   margin: 35px auto;
+  padding: 20px auto;
+  border: 2px solid #dadde1;
+  border-radius: 10px;
+}
+.source {
+  text-align: right;
 }
