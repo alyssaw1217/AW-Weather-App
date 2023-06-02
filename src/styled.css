@@ -6,7 +6,11 @@ h1 {
   font-size: 40px;
 }
 
+li {
+  list-style: none;
+  font-size: 25px;
+}
 .all-weather-app {
-  max-width: 600px;
+  max-width: 400px;
   margin: 35px auto;
 }
