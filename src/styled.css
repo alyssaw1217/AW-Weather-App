@@ -3,14 +3,15 @@ body {
 }
 
 h1 {
-  font-size: 25px;
+  font-size: 45px;
   text-align: center;
 }
 
 li {
   list-style: none;
-  font-size: 20px;
+  font-size: 25px;
   line-height: 19px;
+  bottom: 5px;
   text-transform: capitalize;
 }
 button {
@@ -30,13 +31,11 @@ button {
 .location-Form {
   padding: 20px;
 }
-.row {
-  padding-top: 30px;
-}
+
 .weather-info {
   position: relative;
   font-size: 20px;
-  top: 50px;
+  top: 110px;
   bottom: 40px;
 }
 
@@ -45,7 +44,16 @@ button {
 }
 
 #temperature {
-  font-size: 45px;
+  font-size: 60px;
   line-height: 19px;
   font-weight: 100;
+}
+#icon {
+  position: relative;
+  top: -35px;
+  right: 5px;
+}
+#dateTime {
+  position: relative;
+  line-height: 50px;
 }

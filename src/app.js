@@ -53,8 +53,13 @@ function displayTemp(response) {
   skies.innerHTML = response.data.condition.description;
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
 }
 let apiKey = "5c0e3b29bb2of0da62d459b3b624c2bt";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=Seattle&key=5c0e3b29bb2of0da62d459b3b624c2bt&units=imperial`;
+let apiUrl = `https://api.shecodes.io/weather/v1/current?query=tokyo&key=5c0e3b29bb2of0da62d459b3b624c2bt&units=imperial`;
 
 axios.get(apiUrl).then(displayTemp);
