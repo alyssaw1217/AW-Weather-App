@@ -43,39 +43,18 @@ if (currentMinute < 10) {
 
 todaysDateTime.innerHTML = `${weekDay}, ${currentMonth} ${currentDate} ${currentHour}:${currentMinute}`;
 
-let locationForm = document.querySelector("#location-form");
-locationForm.addEventListener("submit", locationSearch);
-
-function cityElement(response) {
-  let temp = document.querySelector("#temperature");
-  let city = document.querySelector("#city");
-  let description = document.querySelector("#description");
-  let windSpeed = document.querySelector("#wind");
-  let iconElement = document.querySelector("#icon");
-
-  celsiusTemp = response.data.main.temp;
-
-  temp.innerHTML = Math.round(celsiusTemp);
-  city.innerHTML = response.data.name;
-  description.innerHTML = response.data.weather[0].description;
-  windSpeed.innerHTML = Math.round(response.data.wind.speed * 3.6);
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  iconElement.setAttribute("alt", response.data.weather[0].description);
-
-  showWeather(response.data.coord);
+function displayTemp(response) {
+  console.log(response.data);
+  let tempElement = document.querySelector("#temperature");
+  tempElement.innerHTML = Math.round(response.data.temperature.current);
+  let showCity = document.querySelector("#city");
+  showCity.innerHTML = response.data.city;
+  let skies = document.querySelector("#description");
+  skies.innerHTML = response.data.condition.description;
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = Math.round(response.data.wind.speed);
 }
-function showWeather(position) {
-  let apiKey = "ebef9ca4a8de66ed586fac628fade056";
-  let location = document.querySelector("#location-input").value;
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
-  axios.get(url).then(cityElement);
-}
+let apiKey = "5c0e3b29bb2of0da62d459b3b624c2bt";
+let apiUrl = `https://api.shecodes.io/weather/v1/current?query=Seattle&key=5c0e3b29bb2of0da62d459b3b624c2bt&units=imperial`;
 
-function locationSearch(event) {
-  event.preventDefault();
-  let cityInput = document.querySelector("#location-input");
-  search(cityInput.value);
-}
+axios.get(apiUrl).then(displayTemp);
