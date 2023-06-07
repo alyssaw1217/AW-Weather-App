@@ -72,6 +72,20 @@ function submitForm(event) {
   let locationElement = document.querySelector("#location-input");
   searchLocation(locationElement.value);
 }
+
+function showCurrent() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
+
+function showPosition(position) {
+  console.log(position);
+  let apiKey = "5c0e3b29bb2of0da62d459b3b624c2bt";
+  let lon = position.coords.longitude;
+  let lat = position.coords.latitude;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=5c0e3b29bb2of0da62d459b3b624c2bt&units=imperial`;
+  axios.get(apiUrl).then(displayTemp);
+}
+
 let apiKey = "5c0e3b29bb2of0da62d459b3b624c2bt";
 let apiUrl = `https://api.shecodes.io/weather/v1/current?query=London&key=5c0e3b29bb2of0da62d459b3b624c2bt&units=imperial`;
 
@@ -79,3 +93,6 @@ axios.get(apiUrl).then(displayTemp);
 
 let form = document.querySelector("#location-form");
 form.addEventListener("submit", submitForm);
+
+let button = document.querySelector("#currentCity");
+button.addEventListener("click", showCurrent);
