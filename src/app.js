@@ -46,7 +46,7 @@ todaysDateTime.innerHTML = `${weekDay}, ${currentMonth} ${currentDate} ${current
 function displayTemp(response) {
   console.log(response.data);
   let tempElement = document.querySelector("#temperature");
-  tempElement.innerHTML = Math.round(response.data.temperature.current);
+  tempElement.innerHTML = Math.round(fahrenheitTemp);
   let showCity = document.querySelector("#city");
   showCity.innerHTML = response.data.city;
   let skies = document.querySelector("#description");
@@ -59,6 +59,8 @@ function displayTemp(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   iconElement.setAttribute("alt", response.data.condition.description);
+
+  let fahrenheitTemp = response.data.temperature.current;
 }
 
 function searchLocation(city) {
@@ -88,7 +90,7 @@ function showPosition(position) {
 
 function showCelsiusTemp(event) {
   event.preventDefault();
-  let celsiusTemp = (69 - 32) * 1.8;
+  let celsiusTemp = (67 - 32) * 0.5556;
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(celsiusTemp);
 }
@@ -98,6 +100,8 @@ let apiUrl = `https://api.shecodes.io/weather/v1/current?query=London&key=5c0e3b
 
 axios.get(apiUrl).then(displayTemp);
 
+let fahrenheitTemp = null;
+
 let form = document.querySelector("#location-form");
 form.addEventListener("submit", submitForm);
 
@@ -106,3 +110,5 @@ button.addEventListener("click", showCurrent);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
+
+search("London");
