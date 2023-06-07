@@ -57,3 +57,6 @@ button {
   position: relative;
   line-height: 50px;
 }
+#description {
+  padding-bottom: 15px;
+}

@@ -86,6 +86,13 @@ function showPosition(position) {
   axios.get(apiUrl).then(displayTemp);
 }
 
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  let celsiusTemp = (69 - 32) * 1.8;
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+}
+
 let apiKey = "5c0e3b29bb2of0da62d459b3b624c2bt";
 let apiUrl = `https://api.shecodes.io/weather/v1/current?query=London&key=5c0e3b29bb2of0da62d459b3b624c2bt&units=imperial`;
 
@@ -96,3 +103,6 @@ form.addEventListener("submit", submitForm);
 
 let button = document.querySelector("#currentCity");
 button.addEventListener("click", showCurrent);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemp);
