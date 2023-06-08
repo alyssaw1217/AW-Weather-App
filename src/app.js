@@ -40,7 +40,6 @@ let currentMinute = today.getMinutes();
 if (currentMinute < 10) {
   currentMinute = `0${currentMinute}`;
 }
-
 todaysDateTime.innerHTML = `${weekDay}, ${currentMonth} ${currentDate} ${currentHour}:${currentMinute}`;
 
 function displayTemp(response) {
@@ -58,7 +57,36 @@ function displayTemp(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   iconElement.setAttribute("alt", response.data.condition.description);
+
+  showForecast();
 }
+function showForecast() {
+  let forecastElement = document.querySelector("#weather-forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Friday", "Saturday", "Sunday", "Monday"];
+  days.forEach(function (days) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-sm-3">
+                <div class="forecast-day">${days}</div>
+                <img
+                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+                  alt="Clear"
+                  width="60"
+                />
+                <div class="daily-forecast-degrees">
+                  <span class="daily-forecast-degrees-max"
+                    ><strong>67°</strong></span
+                  >/
+                  <span class="daily-forecast-degrees-min">45°</span>
+                </div>
+              </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function searchLocation(city) {
   let apiKey = "5c0e3b29bb2of0da62d459b3b624c2bt";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=5c0e3b29bb2of0da62d459b3b624c2bt&units=imperial`;
@@ -66,6 +94,7 @@ function searchLocation(city) {
 }
 
 function submitForm(event) {
+  event.preventDefault();
   let locationElement = document.querySelector("#location-input");
   searchLocation(locationElement.value);
 }
@@ -81,6 +110,7 @@ function showPosition(position) {
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=5c0e3b29bb2of0da62d459b3b624c2bt&units=imperial`;
   axios.get(apiUrl).then(displayTemp);
 }
+
 let apiKey = "5c0e3b29bb2of0da62d459b3b624c2bt";
 let apiUrl = `https://api.shecodes.io/weather/v1/current?query=London&key=5c0e3b29bb2of0da62d459b3b624c2bt&units=imperial`;
 axios.get(apiUrl).then(displayTemp);
@@ -91,4 +121,5 @@ form.addEventListener("submit", submitForm);
 let button = document.querySelector("#currentCity");
 button.addEventListener("click", showCurrent);
 
+formatDate();
 search("London");
