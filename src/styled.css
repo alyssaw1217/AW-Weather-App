@@ -48,6 +48,10 @@ button {
   margin-top: 10px;
 }
 
+.d-flex weather-icon {
+  text-align: center;
+}
+
 #temperature {
   font-size: 60px;
   line-height: 19px;

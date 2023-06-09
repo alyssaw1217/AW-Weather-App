@@ -58,33 +58,61 @@ function displayTemp(response) {
   );
   iconElement.setAttribute("alt", response.data.condition.description);
 
-  showForecast();
+  getForecast(response.data.coordinates);
 }
-function showForecast() {
-  let forecastElement = document.querySelector("#weather-forecast");
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return days[day];
+}
 
+function showForecast(response) {
+  let dailyForecast = response.data.daily;
+  console.log(response.data.daily);
+  let forecastElement = document.querySelector("#weather-forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Friday", "Saturday", "Sunday", "Monday"];
-  days.forEach(function (days) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-sm-3">
-                <div class="forecast-day">${days}</div>
+  dailyForecast.forEach(function (days, index) {
+    if (index < 4) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-sm-3">
+                <div class="forecast-day">${formatDay(days.time)}</div>
                 <img
-                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
-                  alt="Clear"
+                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                    days.condition.icon
+                  }.png"
+                  alt=""
                   width="60"
                 />
                 <div class="daily-forecast-degrees">
                   <span class="daily-forecast-degrees-max"
-                    ><strong>67°</strong></span
+                    ><strong>${Math.round(
+                      days.temperature.maximum
+                    )}°</strong></span
                   >/
-                  <span class="daily-forecast-degrees-min">45°</span>
+                  <span class="daily-forecast-degrees-min">${Math.round(
+                    days.temperature.minimum
+                  )}°</span>
                 </div>
               </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+function getForecast(coordinates) {
+  let apiKey = "5c0e3b29bb2of0da62d459b3b624c2bt";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(showForecast);
 }
 
 function searchLocation(city) {
@@ -120,6 +148,3 @@ form.addEventListener("submit", submitForm);
 
 let button = document.querySelector("#currentCity");
 button.addEventListener("click", showCurrent);
-
-formatDate();
-search("London");
